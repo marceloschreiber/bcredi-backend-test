@@ -45,10 +45,15 @@ public class Main {
       List<String> inputLines = Files.readAllLines(inputPath);
       List<String> outputLines = Files.readAllLines(outputPath);
 
-      if (Solution.processMessages(inputLines).equals(outputLines.get(0))) {
-        System.out.println(String.format("Test %s/%s - Passed", i + 1, outputFiles.length));
+      String expected = outputLines.get(0);
+      String actual = Solution.processMessages(inputLines);
+
+      if (expected.equals(actual)) {
+        System.out.printf("Test %s/%s - Passed%n", i + 1, outputFiles.length);
       } else {
-        System.out.println(String.format("Test %s/%s - Failed", i + 1, outputFiles.length));
+        System.out.printf("Expected %s%n", expected);
+        System.out.printf("Actual %s%n", actual);
+        System.out.printf("Test %s/%s - Failed%n", i + 1, outputFiles.length);
       }
     }
   }
